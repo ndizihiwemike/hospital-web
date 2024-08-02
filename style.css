@@ -1,0 +1,359 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #f0f0f0;
+    padding: 20px;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+nav li {
+    margin-right: 20px;
+}
+
+nav a {
+    color: #333;
+    text-decoration: none;
+}
+
+.hero {
+    background-image: url('hero.jpg');
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+}
+
+.hero h1 {
+    font-size: 48px;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.cta-btn {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.cta-btn:hover {
+    background-color: #3e8e41;
+}
+
+.intro {
+    padding: 20px;
+}
+
+.intro h2 {
+    margin-top: 0;
+}
+
+.featured-products {
+    padding: 20px;
+}
+
+.featured-products ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+/* about us */
+
+.about-intro {
+    background-image: url('about-hero.jpg');
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+}
+
+.mission-vision-values {
+    padding: 20px;
+}
+
+.mission-vision-values h2 {
+    margin-top: 0;
+}
+
+.meet-the-team {
+    padding: 20px;
+}
+
+.meet-the-team ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.meet-the-team li {
+    margin: 20px;
+    width: 250px;
+}
+
+.meet-the-team img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.testimonials {
+    padding: 20px;
+}
+
+.testimonials ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.testimonials li {
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+}
+
+/* contact use  */
+
+.contact-intro {
+    background-image: url('contact-hero.jpg');
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+}
+
+.contact-form {
+    padding: 20px;
+}
+
+.contact-form form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contact-form label {
+    margin-bottom: 10px;
+}
+
+.contact-form input, .contact-form textarea {
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.contact-form input[type="submit"] {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.contact-form input[type="submit"]:hover {
+    background-color: #3e8e41;
+}
+
+.contact-info {
+    padding: 20px;
+}
+
+.contact-info h2 {
+    margin-top: 0;
+}
+
+.contact-info p {
+    margin-bottom: 20px;
+}
+
+.contact-info a {
+    color: #337ab7;
+    text-decoration: none;
+}
+
+.contact-info a:hover {
+    color: #23527c;
+}
+
+.fab {
+    font-size: 24px;
+    margin-right: 10px;
+    color: #337ab7;
+}
+
+.fab:hover {
+    color: #23527c;
+}
+
+
+/* disease/ condition */
+.diseases-intro {
+    background-image: url('diseases-hero.jpg');
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+}
+
+.diseases-list {
+    padding: 20px;
+}
+
+.diseases-list ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.diseases-list li {
+    margin: 20px;
+    width: 250px;
+}
+
+.diseases-list img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.diseases-list h3 {
+    margin-top: 10px;
+}
+
+.diseases-list a {
+    color: #337ab7;
+    text-decoration: none;
+}
+
+.diseases-list a:hover {
+    color: #23527c;
+}
+
+  /* products */
+
+  .product {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .product img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  
+  .product p {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  .order-btn {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .order-btn:hover {
+    background-color: #3e8e41;
+  }
+
+  .products-intro {
+    background-image: url('products-hero.jpg');
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+}
+
+.products-filter {
+    padding: 20px;
+}
+
+.products-filter ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.products-filter li {
+    margin: 20px;
+}
+
+.products-filter label {
+    margin-bottom: 10px;
+}
+
+.products-filter select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.products-list {
+    padding: 20px;
+}
+
+.products-list ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.products-list li {
+    margin: 20px;
+    width: 250px;
+}
+
+/* .products-list */

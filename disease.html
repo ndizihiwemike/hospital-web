@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diseases & Conditions - Root & Vine Lifestyle Centre</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="product.html">Products</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="diseases-intro">
+            <h1>Diseases & Conditions</h1>
+            <p>Learn more about the diseases and conditions we specialize in, and discover our natural healthcare solutions.</p>
+        </section>
+        <section class="diseases-list">
+            <ul>
+                <li>
+                    <img src="anxiety.jpg" alt="Anxiety">
+                    <h3><a href="anxiety.html">Anxiety</a></h3>
+                </li>
+                <li>
+                    <img src="arthritis.jpg" alt="Arthritis">
+                    <h3><a href="arthritis.html">Arthritis</a></h3>
+                </li>
+                <li>
+                    <img src="diabetes.jpg" alt="Diabetes">
+                    <h3><a href="diabetes.html">Diabetes</a></h3>
+                </li>
+                <!-- Add more diseases/conditions -->
+            </ul>
+        </section>
+    </main>
+    <script>
+      // Disease/Condition script.js code
+
+// Get the disease/condition tabs element
+const diseaseTabs = document.getElementById('disease-tabs');
+
+// Initialize the disease/condition tabs
+const diseaseTabsOptions = {
+  tabs: true,
+  hash: true
+};
+$(diseaseTabs).tabs(diseaseTabsOptions);
+
+// Get the disease/condition accordion element
+const diseaseAccordion = document.getElementById('disease-accordion');
+
+// Initialize the disease/condition accordion
+const diseaseAccordionOptions = {
+  collapsible: true,
+  active: false
+};
+$(diseaseAccordion).accordion(diseaseAccordionOptions);
+
+// Get the symptoms checklist element
+const symptomsChecklist = document.getElementById('symptoms-checklist');
+
+// Initialize the symptoms checklist
+const symptomsChecklistOptions = {
+  checkboxes: true
+};
+$(symptomsChecklist).checkboxes(symptomsChecklistOptions);
+
+// Add event listener to the "Get Started" button
+const getStartedButton = document.getElementById('get-started-button');
+getStartedButton.addEventListener('click', handleGetStarted);
+
+// Function to handle "Get Started" button click
+function handleGetStarted() {
+  const selectedSymptoms = [];
+  const symptomCheckboxes = symptomsChecklist.querySelectorAll('input[type="checkbox"]:checked');
+
+  symptomCheckboxes.forEach(checkbox => {
+    selectedSymptoms.push(checkbox.value);
+  });
+
+  // Send the selected symptoms to the server
+  const xhr = new XMLHttpRequest();
+  xhr.open('POST', 'disease-condition.php', true);
+  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  xhr.send(`symptoms=${selectedSymptoms.join(',')}`);
+
+  // Handle the server response
+  xhr.onload = function() {
+    if (xhr.status === 200) {
+      const response = JSON.parse(xhr.responseText);
+      const recommendedProducts = response.recommendedProducts;
+
+      // Display the recommended products
+      const recommendedProductsHtml = '';
+      recommendedProducts.forEach(product => {
+        recommendedProductsHtml += `
+          <div class="recommended-product">
+            <img src="product-images/${product.image}" alt="${product.name}">
+            <h3>${product.name}</h3>
+            <p>${product.description}</p>
+          </div>
+        `;
+      });
+      const recommendedProductsContainer = document.getElementById('recommended-products');
+      recommendedProductsContainer.innerHTML = recommendedProductsHtml;
+    } else {
+      alert('Error processing symptoms. Please try again later.');
+    }
+  };
+}
+    </script>
+    <script>
+      // Add event listeners to disease/condition links
+const diseaseLinks = document.querySelectorAll('.diseases-list a');
+
+diseaseLinks.forEach(link => {
+    link.addEventListener('click', event => {
+        event.preventDefault();
+        const diseaseName = link.textContent.trim();
+        // Load disease/condition page dynamically
+        loadDiseasePage(diseaseName);
+    });
+});
+
+// Function to load disease/condition page dynamically
+function loadDiseasePage(diseaseName) {
+    const diseasePageUrl = `/${diseaseName}.html`;
+    window.location.href = diseasePageUrl;
+}
+    </script>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Root & Vine Lifestyle Centre</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="./about.html">About Us</a></li>
+                <li><a href="./disease.html">Diseases & Conditions</a></li>
+                <li><a href="./product.html">Products</a></li>
+                <li><a href="./contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="hero">
+            <h1>Welcome to Root & Vine Lifestyle Centre</h1>
+            <p>Where nature meets healthcare</p>
+            <button class="cta-btn">Learn More</button>
+        </section>
+        <section class="intro">
+            <h2>Our Mission</h2>
+            <p>At Root & Vine Lifestyle Centre, we believe in harnessing the power of natural herbs to promote healthy living. Our team of qualified doctors and healthcare professionals are dedicated to providing personalized care and treatment to our patients.</p>
+            <p>We use only the finest quality natural herbs, carefully selected and processed to ensure maximum efficacy and safety. Our state-of-the-art facilities and equipment ensure that our patients receive the best possible care.</p>
+        </section>
+        <section class="featured-products">
+            <h2>Featured Products</h2>
+            <ul>
+                <li>
+                    <img src="product1.jpg" alt="Product 1">
+                    <h3>Herbal Tea for Digestive Health</h3>
+                    <p>Our herbal tea blend is carefully crafted to soothe and calm the digestive system.</p>
+                    <button class="product-btn">Learn More</button>
+                </li>
+                <li>
+                    <img src="product2.jpg" alt="Product 2">
+                    <h3>Natural Supplements for Immune System</h3>
+                    <p>Our natural supplements are designed to boost your immune system and keep you healthy.</p>
+                    <button class="product-btn">Learn More</button>
+                </li>
+                <li>
+                    <img src="product3.jpg" alt="Product 3">
+                    <h3>Herbal Remedies for Skin Care</h3>
+                    <p>Our herbal remedies are gentle and effective for a range of skin conditions.</p>
+                    <button class="product-btn">Learn More</button>
+                </li>
+            </ul>
+        </section>
+        <section class="call-to-action">
+            <h2>Take the First Step Towards a Healthier You</h2>
+            <p>Book an appointment with our doctors today and discover the benefits of natural healthcare.</p>
+            <button class="cta-btn">Book Now</button>
+        </section>
+    </main>
+    <script>
+        // Home page script.js code
+
+// Get the hero slider element
+const heroSlider = document.getElementById('hero-slider');
+
+// Initialize the hero slider
+const heroSliderOptions = {
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  autoplay: true,
+  autoplaySpeed: 5000,
+  arrows: false,
+  dots: true
+};
+$(heroSlider).slick(heroSliderOptions);
+
+// Get the featured products element
+const featuredProducts = document.getElementById('featured-products');
+
+// Initialize the featured products carousel
+const featuredProductsOptions = {
+  slidesToShow: 3,
+  slidesToScroll: 1,
+  autoplay: true,
+  autoplaySpeed: 5000,
+  arrows: true,
+  dots: false,
+  responsive: [
+    {
+      breakpoint: 768,
+      settings: {
+        slidesToShow: 2
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1
+      }
+    }
+  ]
+};
+$(featuredProducts).slick(featuredProductsOptions);
+
+// Get the testimonials element
+const testimonials = document.getElementById('testimonials');
+
+// Initialize the testimonials carousel
+const testimonialsOptions = {
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  autoplay: true,
+  autoplaySpeed: 5000,
+  arrows: false,
+  dots: true
+};
+$(testimonials).slick(testimonialsOptions);
+
+// Add event listener to the newsletter signup form
+const newsletterForm = document.getElementById('newsletter-form');
+newsletterForm.addEventListener('submit', handleNewsletterSubmit);
+
+// Function to handle newsletter submission
+function handleNewsletterSubmit(event) {
+  event.preventDefault();
+
+  const emailInput = document.getElementById('newsletter-email');
+  const email = emailInput.value;
+
+  // Validate the email address
+  if (!email ||!validateEmail(email)) {
+    alert('Please enter a valid email address');
+    return;
+  }
+
+  // Send the email address to the server
+  const xhr = new XMLHttpRequest();
+  xhr.open('POST', 'newsletter.php', true);
+  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  xhr.send(`email=${email}`);
+
+  // Handle the server response
+  xhr.onload = function() {
+    if (xhr.status === 200) {
+      alert('Thank you for subscribing to our newsletter!');
+      newsletterForm.reset(); // Reset the form
+    } else {
+      alert('Error subscribing to newsletter. Please try again later.');
+    }
+  };
+}
+
+// Function to validate an email address
+function validateEmail(email) {
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  return emailRegex.test(email);
+}
+    </script>
+</body>
+</html>

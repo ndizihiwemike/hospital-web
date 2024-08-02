@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>products</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="disease.html">Diseases & Conditions</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <!-- <section class="products-intro">
+            <h1>Our Products</h1>
+            <p>Browse our range of natural healthcare products, carefully crafted to promote healthy living.</p>
+        </section> -->
+        <section class="products-filter">
+            <h2>Filter by:</h2>
+            <ul>
+                <li>
+                    <label for="disease">Disease/Condition:</label>
+                    <select id="disease">
+                        <option value="">All</option>
+                        <option value="anxiety">Anxiety</option>
+                        <option value="arthritis">Arthritis</option>
+                        <option value="diabetes">Diabetes</option>
+                        <!-- Add more options -->
+                    </select>
+                </li>
+                <li>
+                    <label for="product-type">Product Type:</label>
+                    <select id="product-type">
+                        <option value="">All</option>
+                        <option value="supplements">Supplements</option>
+                        <option value="herbal-remedies">Herbal Remedies</option>
+                        <option value="skincare">Skincare</option>
+                        <!-- Add more options -->
+                    </select>
+                </li>
+                <li>
+                    <label for="price">Price:</label>
+                    <select id="price">
+                        <option value="">All</option>
+                        <option value="low-to-high">Low to High</option>
+                        <option value="high-to-low">High to Low</option>
+                    </select>
+                </li>
+            </ul>
+        </section>
+        <section class="products-list">
+            <ul>
+                <li>
+                    <img src="product1.jpg" alt="Product 1">
+                    <h3>Product 1: Anxiety Relief</h3>
+                    <p>Description: Our Anxiety Relief supplement is designed to promote relaxation and reduce stress.</p>
+                    <p>Usage Instructions: Take 2 capsules daily with water.</p>
+                    <p>Price: $29.99</p>
+                    <button class="order-btn">Order Now</button>
+                </li>
+                <li>
+                    <img src="product2.jpg" alt="Product 2">
+                    <h3>Product 2: Arthritis Pain Relief</h3>
+                    <p>Description: Our Arthritis Pain Relief cream is designed to reduce inflammation and alleviate pain.</p>
+                    <p>Usage Instructions: Apply topically 2-3 times daily.</p>
+                    <p>Price: $39.99</p>
+                    <button class="order-btn">Order Now</button>
+                </li>
+                <!-- Add more products -->
+            </ul>
+        </section>
+    </main>
+    <script src="script.js"></script>
+    <!-- <section class="product">
+        <h2>Product: Glucophage</h2>
+        <img src="glucophage.jpg" alt="Glucophage">
+        <p>Metformin hydrochloride tablets, 500mg</p>
+        <p>Usage: Take 1 tablet twice daily with meals</p>
+        <p>Price: $20.00</p>
+        <button class="order-btn">Order Now</button>
+      </section> -->
+
+      <script>
+        // Products script.js code
+
+// Get the products container element
+const productsContainer = document.getElementById('products-container');
+
+// Get the product cards
+const productCards = productsContainer.querySelectorAll('.product-card');
+
+// Add event listeners to the product cards
+productCards.forEach(productCard => {
+  productCard.addEventListener('click', handleProductCardClick);
+});
+
+// Function to handle product card click
+function handleProductCardClick(event) {
+  const productCard = event.target.closest('.product-card');
+  const productId = productCard.dataset.productId;
+  const productName = productCard.querySelector('.product-name').textContent;
+
+  // Show the product details modal
+  showProductDetailsModal(productId, productName);
+}
+
+// Function to show the product details modal
+function showProductDetailsModal(productId, productName) {
+  const modalContainer = document.getElementById('modal-container');
+  const modalContent = document.getElementById('modal-content');
+
+  // Create the modal content
+  const modalHtml = `
+    <h2>${productName}</h2>
+    <p>Product description...</p>
+    <img src="product-images/${productId}.jpg" alt="${productName}">
+    <p>Price: $19.99</p>
+    <button class="btn btn-primary">Add to Cart</button>
+  `;
+
+  modalContent.innerHTML = modalHtml;
+
+  // Show the modal
+  modalContainer.classList.add('show-modal');
+}
+
+// Add event listener to the modal close button
+const closeModalButton = document.getElementById('close-modal-button');
+closeModalButton.addEventListener('click', handleCloseModal);
+
+// Function to close the modal
+function handleCloseModal() {
+  const modalContainer = document.getElementById('modal-container');
+  modalContainer.classList.remove('show-modal');
+}
+
+// Add event listener to the add to cart button
+const addToCartButton = document.getElementById('add-to-cart-button');
+addToCartButton.addEventListener('click', handleAddToCart);
+
+// Function to add to cart
+function handleAddToCart() {
+  const productId = addToCartButton.dataset.productId;
+  const productName = addToCartButton.dataset.productName;
+
+  // Add the product to the cart
+  addToCart(productId, productName);
+
+  // Update the cart count
+  updateCartCount();
+
+  // Close the modal
+  handleCloseModal();
+}
+
+// Function to add to cart
+function addToCart(productId, productName) {
+  // TO DO: Implement cart logic here
+  console.log(`Added ${productName} to cart`);
+}
+
+// Function to update the cart count
+function updateCartCount() {
+  const cartCountElement = document.getElementById('cart-count');
+  const cartCount = parseInt(cartCountElement.textContent) + 1;
+  cartCountElement.textContent = cartCount;
+}
+      </script>
+</body>
+</html>
