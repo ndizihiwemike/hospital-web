@@ -27,6 +27,9 @@ nav a {
     color: #333;
     text-decoration: none;
 }
+nav ul li a:hover{
+    color: aqua;
+}
 
 .hero {
     background-image: url('hero.jpg');
@@ -41,11 +44,14 @@ nav a {
 .hero h1 {
     font-size: 48px;
     margin-bottom: 10px;
+    align-content: center;
 }
 
 .hero p {
-    font-size: 24px;
+    font-size: 40px;
     margin-bottom: 20px;
+    font-family: 'Times New Roman', Times, serif;
+    padding: 30px;
 }
 
 .cta-btn {
@@ -67,6 +73,12 @@ nav a {
 
 .intro h2 {
     margin-top: 0;
+    text-align: center;
+}
+.intro p{
+    font-size: 35px;
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif Impact,  'Arial Narrow Bold', sans-serif;
 }
 
 .featured-products {

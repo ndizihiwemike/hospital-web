@@ -14,7 +14,7 @@
   }
 
   // Send the email
-  $to = 'info@rootandvine.com'; // Replace with your email address
+  $to = 'mikendizihiwe@gmail.com'; // Replace with your email address
   $subject = 'Contact Us Form Submission';
   $body = "Name: $name\nEmail: $email\nPhone: $phone\nMessage: $message";
   $headers = "From: $email\r\nReply-To: $email";

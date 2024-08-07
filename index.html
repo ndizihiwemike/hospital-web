@@ -5,6 +5,92 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Root & Vine Lifestyle Centre</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" />
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <style>
+      header {
+    background-color: #f0f0f0;
+    padding: 20px;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+nav li {
+    margin-right: 20px;
+    
+}
+
+nav a {
+    color: #333;
+    text-decoration: none;
+}
+nav ul li a:hover{
+    color: aqua;
+}
+h1{
+  text-align: center;
+  font-size: 80px;
+  
+}
+h1 {
+  opacity: 0;
+  animation: fadeIn 1s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.animated-h2 {
+  opacity: 0;
+  transform: translateY(-50px);
+  transition: all 0.5s ease-out;
+}
+
+.animated-p {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.5s ease-out;
+}
+
+.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+h2{
+  text-align: center;
+  font-size: 35px;
+  
+}
+h3{
+  text-align: center;
+  font-size: 33px;
+  
+}
+p{
+  text-align: center;
+  font-size: 30px;
+ 
+}
+
+img{
+  margin: 0 auto;
+  display: block;
+}
+    </style>
 </head>
 <body>
     <header>
@@ -18,19 +104,19 @@
         </nav>
     </header>
     <main>
-        <section class="hero">
-            <h1>Welcome to Root & Vine Lifestyle Centre</h1>
-            <p>Where nature meets healthcare</p>
-            <button class="cta-btn">Learn More</button>
+        <section class="hero" id="hero-slider">
+            <h1><strong>Welcome to Root & Vine Lifestyle Centre</strong></h1>
+            <p><b font-size="60px">Where nature meets healthcare</b></p>
+            <!-- <button class="cta-btn">Learn More</button> --> 
         </section>
         <section class="intro">
-            <h2>Our Mission</h2>
-            <p>At Root & Vine Lifestyle Centre, we believe in harnessing the power of natural herbs to promote healthy living. Our team of qualified doctors and healthcare professionals are dedicated to providing personalized care and treatment to our patients.</p>
-            <p>We use only the finest quality natural herbs, carefully selected and processed to ensure maximum efficacy and safety. Our state-of-the-art facilities and equipment ensure that our patients receive the best possible care.</p>
+            <h2><b>Our Mission</b></h2>
+            <p>At Root & Vine Lifestyle Centre, we believe in harnessing <br> the power of natural herbs to promote healthy living. <br> Our team of qualified doctors and healthcare professionals <br> are dedicated to providing personalized care <br> and treatment to our patients.</p>
+            <p>We use only the finest quality natural herbs, carefully <br> selected and processed to ensure maximum efficacy and safety. <br> Our state-of-the-art facilities and equipment ensure that <br> our patients receive the best possible care.</p>
         </section>
         <section class="featured-products">
             <h2>Featured Products</h2>
-            <ul>
+            <ul id="featured-products">
                 <li>
                     <img src="product1.jpg" alt="Product 1">
                     <h3>Herbal Tea for Digestive Health</h3>
@@ -58,6 +144,16 @@
         </section>
     </main>
     <script>
+
+const h2 = document.querySelectorAll('.animated-h2');
+const p = document.querySelectorAll('.animated-p');
+
+h2.forEach(h2 => h2.classList.add('animate'));
+p.forEach(p => p.classList.add('animate'));
+
+
+
+      
         // Home page script.js code
 
 // Get the hero slider element
@@ -116,45 +212,7 @@ const testimonialsOptions = {
 };
 $(testimonials).slick(testimonialsOptions);
 
-// Add event listener to the newsletter signup form
-const newsletterForm = document.getElementById('newsletter-form');
-newsletterForm.addEventListener('submit', handleNewsletterSubmit);
 
-// Function to handle newsletter submission
-function handleNewsletterSubmit(event) {
-  event.preventDefault();
-
-  const emailInput = document.getElementById('newsletter-email');
-  const email = emailInput.value;
-
-  // Validate the email address
-  if (!email ||!validateEmail(email)) {
-    alert('Please enter a valid email address');
-    return;
-  }
-
-  // Send the email address to the server
-  const xhr = new XMLHttpRequest();
-  xhr.open('POST', 'newsletter.php', true);
-  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-  xhr.send(`email=${email}`);
-
-  // Handle the server response
-  xhr.onload = function() {
-    if (xhr.status === 200) {
-      alert('Thank you for subscribing to our newsletter!');
-      newsletterForm.reset(); // Reset the form
-    } else {
-      alert('Error subscribing to newsletter. Please try again later.');
-    }
-  };
-}
-
-// Function to validate an email address
-function validateEmail(email) {
-  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-  return emailRegex.test(email);
-}
     </script>
 </body>
 </html>
