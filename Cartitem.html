@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cartItem</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="head"><p>my cart</p></div>
+        <div>
+
+            <form action="/submit-form" method="post" id="userForm">
+                <label for="Name">Your Name</label>
+                <input id="Name" type="text" placeholder="Name" name="Name" required>
+                
+                <label for="Email">Your E-mail</label>
+                <input id="Email" type="email" placeholder="E-mail" name="email" required>
+                
+                <label for="Phone">Your phone number</label>
+                <input id="Phone" type="tel" placeholder="Phone" name="Phone" required>
+                
+                <label for="Location">Your location</label>
+                <input id="Location" type="text" placeholder="Location" name="Location" required>
+                
+                <div id="cartItem">Your cart is empty</div>
+              
+                <div class="foot">
+                  <h3>Total</h3>
+                  <h2 id="total">Ugshs 0</h2>
+                </div>
+                
+                <button type="submit">Submit</button>
+              </form>
+        </div> 
+        </div>
+</body>
+</html>

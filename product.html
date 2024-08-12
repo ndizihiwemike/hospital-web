@@ -26,17 +26,18 @@ option{
     /* text-align: center; */
   font-size: 25px;
 }
-p{
+/* p{
   text-align: center;
   font-size: 30px;
-}
+} */
     </style>
+<script src="https://kit.fontawesome.com/b8c51a70ab.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
     <header>
         <nav>
-            <ul>
+            <ul style="font-size: 30px;">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About Us</a></li>
                 <li><a href="disease.html">Diseases & Conditions</a></li>
@@ -44,161 +45,209 @@ p{
             </ul>
         </nav>
     </header>
-    <main>
-        <!-- <section class="products-intro">
-            <h1>Our Products</h1>
-            <p>Browse our range of natural healthcare products, carefully crafted to promote healthy living.</p>
-        </section> -->
-        <section class="products-filter">
-            <h2>Filter by:</h2>
-            <ul>
-                <li>
-                    <label for="disease">Disease/Condition:</label>
-                    <select id="disease">
-                        <option value="">All</option>
-                        <option value="anxiety">Anxiety</option>
-                        <option value="arthritis">Arthritis</option>
-                        <option value="diabetes">Diabetes</option>
-                        <!-- Add more options -->
-                    </select>
-                </li>
-                <li>
-                    <label for="product-type">Product Type:</label>
-                    <select id="product-type">
-                        <option value="">All</option>
-                        <option value="supplements">Supplements</option>
-                        <option value="herbal-remedies">Herbal Remedies</option>
-                        <option value="skincare">Skincare</option>
-                        <!-- Add more options -->
-                    </select>
-                </li>
-                <li>
-                    <label for="price">Price:</label>
-                    <select id="price">
-                        <option value="">All</option>
-                        <option value="low-to-high">Low to High</option>
-                        <option value="high-to-low">High to Low</option>
-                    </select>
-                </li>
-            </ul>
-        </section>
-        <section class="products-list">
-            <ul>
-                <li>
-                    <img src="product1.jpg" alt="Product 1">
-                    <h3>Product 1: Anxiety Relief</h3>
-                    <p>Description: Our Anxiety Relief supplement is designed to promote relaxation and reduce stress.</p>
-                    <p>Usage Instructions: Take 2 capsules daily with water.</p>
-                    <p>Price: $29.99</p>
-                    <button class="order-btn">Order Now</button>
-                </li>
-                <li>
-                    <img src="product2.jpg" alt="Product 2">
-                    <h3>Product 2: Arthritis Pain Relief</h3>
-                    <p>Description: Our Arthritis Pain Relief cream is designed to reduce inflammation and alleviate pain.</p>
-                    <p>Usage Instructions: Apply topically 2-3 times daily.</p>
-                    <p>Price: $39.99</p>
-                    <button class="order-btn">Order Now</button>
-                </li>
-                <!-- Add more products -->
-            </ul>
-        </section>
-    </main>
-    <script src="script.js"></script>
-    <!-- <section class="product">
-        <h2>Product: Glucophage</h2>
-        <img src="glucophage.jpg" alt="Glucophage">
-        <p>Metformin hydrochloride tablets, 500mg</p>
-        <p>Usage: Take 1 tablet twice daily with meals</p>
-        <p>Price: $20.00</p>
-        <button class="order-btn">Order Now</button>
-      </section> -->
+<div class="searchbar">
+    <input type="text" placeholder="search..." id="searchBar" name="searchBar" style="width: 200px; height: 40px; font-size: 30px; border-radius: 2vh; flex: 1; margin: 5px; left: 20px;">
+    <div class="cart"><a href="Cartitem.html"><i class="fa-solid fa-cart-shopping"></i><p id="count" style="height: 20px;;">0</p></a></div>
+</div>
+    <div id="root"></div>
 
-      <script>
-        // Products script.js code
+    <script src="searchengine.js"></script>
+   
 
-// Get the products container element
-const productsContainer = document.getElementById('products-container');
+   <script>
 
-// Get the product cards
-const productCards = productsContainer.querySelectorAll('.product-card');
+const userForm = document.getElementById("userForm");
 
-// Add event listeners to the product cards
-productCards.forEach(productCard => {
-  productCard.addEventListener('click', handleProductCardClick);
+userForm.addEventListener("submit", async (e) => {
+  e.preventDefault(); // Prevent form submission
+
+  // Get form input values
+  const name = document.getElementById("Name").value;
+  const email = document.getElementById("Email").value;
+  const phone = document.getElementById("Phone").value;
+  const location = document.getElementById("Location").value;
+  const cartItems = []; // Initialize an empty array to store cart items
+
+  // Get cart items from the #cartItem div
+  const cartItemElements = document.getElementById("cartItem").children;
+  for (const element of cartItemElements) {
+    if (element.tagName === "DIV" && element.classList.contains("cart-item")) {
+      const cartItem = {
+        image: element.querySelector("img").src,
+        title: element.querySelector("p").textContent,
+        price: element.querySelector("h2").textContent
+      };
+    console.log("Title:", cartItem.title);
+    console.log("Price:", cartItem.price);
+    console.log("Image URL:", cartItem.image);
+      cartItems.push(cartItem);
+    }
+  }
+  console.log(cartItems)
+  // const total = document.getElementById("total").value;
+  // Calculate the total price
+const totalPriceString = cartItems.reduce((acc, item) => {
+  // totalPrice.toFixed(2);
+  return acc + parseFloat(item.price);
+}, 0);
+
+// Create a string to display the cart items in the email
+// const cartItemsString = JSON.stringify(cartItems, null, 2);
+
+// Format totalPrice as a string with 2 decimal places
+// const totalPriceString = totalPrice.toFixed(2);
+
+const cartItemsString = cartItems.map((item, index) => {
+  JSON.stringify(cartItems, null, 2);
+  return `${index + 1}. ${item.title} - ${item.price}`;
+}).join("\n");
+
+  try {
+  const response = await fetch("/submit-form", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      name: name,
+      email: email,
+      phone: phone,
+      location: location,
+      cartItems: cartItems,
+      total: total
+    })
+  });
+
+  if (response.ok) {
+    console.log("Form data submitted successfully!");
+    // You can display a success message to the user here
+    form.reset();
+  } else {
+    console.log("Error submitting form data:", response);
+    alert("Error submitting form data.");
+    // You can display an error message to the user here
+  }
+} catch (error) {
+  console.log("An error occurred:", error);
+  alert("An error occurred:");
+  // You can display an error message to the user here
+}
+
+
 });
 
-// Function to handle product card click
-function handleProductCardClick(event) {
-  const productCard = event.target.closest('.product-card');
-  const productId = productCard.dataset.productId;
-  const productName = productCard.querySelector('.product-name').textContent;
 
-  // Show the product details modal
-  showProductDetailsModal(productId, productName);
-}
+</script>
+  
 
-// Function to show the product details modal
-function showProductDetailsModal(productId, productName) {
-  const modalContainer = document.getElementById('modal-container');
-  const modalContent = document.getElementById('modal-content');
 
-  // Create the modal content
-  const modalHtml = `
-    <h2>${productName}</h2>
-    <p>Product description...</p>
-    <img src="product-images/${productId}.jpg" alt="${productName}">
-    <p>Price: $19.99</p>
-    <button class="btn btn-primary">Add to Cart</button>
-  `;
+  <section class="products-filter">
+    <!-- Filter options -->
+  </section>
+  <section class="products-list" id="products-container">
+    <ul>
+      <li>
+        <img src="BRITISH BAG.jpg" alt="Product 1" style="width: 250px; height: 200px;">
+        <h3 id="productName">Product 1: Anxiety Relief</h3>
+        <p>Description: Our Anxiety Relief supplement is designed to promote relaxation and reduce stress.</p>
+        <p>Usage Instructions: Take 2 capsules daily with water.</p>
+        <p>Price: Ugshs 29.99</p>
+        <button class="order-btn" data-product-id="1" data-product-name="Anxiety Relief">Order Now</button>
+      </li>
+      <li>
+        <img src="AMERICAN BAG.jpg" alt="Product 2" style="width: 250px; height: 200px;">
+        <h3 id="productName">Product 2: Arthritis Pain Relief</h3>
+        <p>Description: Our Arthritis Pain Relief cream is designed to reduce inflammation and alleviate pain.</p>
+        <p>Usage Instructions: Apply topically 2-3 times daily.</p>
+        <p>Price: Ugshs 39.99</p>
+        <button class="order-btn" data-product-id="2" data-product-name="Arthritis Pain Relief">Order Now</button>
+      </li>
+      <!-- Add more products -->
+    </ul>
+  </section>
+  <!-- Cart icon and count -->
+  <div class="cart-icon">
+    <i class="fas fa-shopping-cart"></i>
+    <span id="cart-count">0</span>
+  </div>
+</main>
 
-  modalContent.innerHTML = modalHtml;
+<!-- JavaScript code -->
+<script>
+  // Get the products container element
+  const productsContainer = document.getElementById('products-container');
 
-  // Show the modal
-  modalContainer.classList.add('show-modal');
-}
+  // Get the product cards
+  const productCards = productsContainer.querySelectorAll('.product-card');
 
-// Add event listener to the modal close button
-const closeModalButton = document.getElementById('close-modal-button');
-closeModalButton.addEventListener('click', handleCloseModal);
+  // Add event listeners to the product cards
+  productCards.forEach(productCard => {
+    productCard.addEventListener('click', handleProductCardClick);
+  });
 
-// Function to close the modal
-function handleCloseModal() {
-  const modalContainer = document.getElementById('modal-container');
-  modalContainer.classList.remove('show-modal');
-}
+  // Function to handle product card click
+  function handleProductCardClick(event) {
+    const productCard = event.target.closest('.product-card');
+    const productId = productCard.dataset.productId;
+    const productName = productCard.querySelector('.product-name').textContent;
 
-// Add event listener to the add to cart button
-const addToCartButton = document.getElementById('add-to-cart-button');
-addToCartButton.addEventListener('click', handleAddToCart);
+    // Show the product details modal
+    showProductDetailsModal(productId, productName);
+  }
 
-// Function to add to cart
-function handleAddToCart() {
-  const productId = addToCartButton.dataset.productId;
-  const productName = addToCartButton.dataset.productName;
+  // Function to show the product details modal
+  function showProductDetailsModal(productId, productName) {
+    const modalContainer = document.getElementById('modal-container');
+    const modalContent = document.getElementById('modal-content');
 
-  // Add the product to the cart
-  addToCart(productId, productName);
+    // Create the modal content
+    const modalHtml = `
+      <h2>${productName}</h2>
+      <p>Product description...</p>
+      <img src="product-images/${productId}.jpg" alt="${productName}">
+      <p>Price: $19.99</p>
+      <button class="btn btn-primary" data-product-id="${productId}" data-product-name="${productName}" onclick="addToCart(this)">Add to Cart</button>
+    `;
 
-  // Update the cart count
-  updateCartCount();
+    modalContent.innerHTML = modalHtml;
 
-  // Close the modal
-  handleCloseModal();
-}
+    // Show the modal
+    modalContainer.classList.add('show-modal');
+  }
 
-// Function to add to cart
-function addToCart(productId, productName) {
-  // TO DO: Implement cart logic here
-  console.log(`Added ${productName} to cart`);
-}
+  // Add event listener to the modal close button
+  const closeModalButton = document.getElementById('close-modal-button');
+  closeModalButton.addEventListener('click', handleCloseModal);
 
-// Function to update the cart count
-function updateCartCount() {
-  const cartCountElement = document.getElementById('cart-count');
-  const cartCount = parseInt(cartCountElement.textContent) + 1;
-  cartCountElement.textContent = cartCount;
-}
-      </script>
+  // Function to close the modal
+  function handleCloseModal() {
+    const modalContainer = document.getElementById('modal-container');
+    modalContainer.classList.remove('show-modal');
+  }
+
+  // Function to add to cart
+  function addToCart(button) {
+    const productId = button.dataset.productId;
+    const productName = button.dataset.productName;
+
+    // Add the product to the cart
+    cart.push({ id: productId, name: productName });
+
+    // Update the cart count
+    updateCartCount();
+
+    // Close the modal
+    handleCloseModal();
+  }
+
+  // Function to update the cart count
+  function updateCartCount() {
+    const cartCountElement = document.getElementById('cart-count');
+    cartCountElement.textContent = cart.length;
+  }
+
+  // Initialize the cart
+  let cart = [];
+</script>
 </body>
 </html>
