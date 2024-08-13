@@ -149,7 +149,20 @@ img{
             <button class="cta-btn">Book Now</button>
         </section>
     </main>
+    <a href="" class="scroll-top" id="btnscroll">Back to top</a>
     <script>
+
+      document.getElementById('btnscroll').addEventListener('click', function(){
+
+        window.scrollTo({
+          top: 0,
+          right: 0 ,
+          // behavior: 
+        });
+      });
+
+
+
 
 const h2 = document.querySelectorAll('.animated-h2');
 const p = document.querySelectorAll('.animated-p');
