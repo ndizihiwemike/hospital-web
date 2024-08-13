@@ -1,0 +1,18 @@
+{
+    "mongoDB":{
+        "url":""
+    },
+    "mySQL":{}
+    ,
+    "ftp":{
+        "host":"",
+        "password":"",
+        "port":"21",
+        "username":""
+    },
+    "mailer":{
+        "user": "r0otandvine@yandex.com",
+        "pass": "m18989422"
+      },
+    "sessionSecret": "rootandvine"
+}

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Root & Vine Lifestyle Centre</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+     <style>
+        header {
+    background-color: #f0f0f0;
+    padding: 20px;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+nav li {
+    margin-right: 20px;
+    
+}
+
+nav a {
+    color: #333;
+    text-decoration: none;
+}
+nav ul li a:hover{
+    color: aqua;
+}
+h1{
+  text-align: center;
+  font-size: 40px;
+}
+h2{
+  text-align: center;
+  font-size: 35px;
+}
+h3{
+  text-align: center;
+  font-size: 33px;
+}
+
+p{
+  text-align: center;
+  font-size: 30px;
+}
+form{
+    text-align: center;
+    font-size: 25px;
+}
+input{
+    font-size: 25px;
+}
+textarea{
+    font-size: 20px;
+}
+img{
+  margin: 0 auto;
+  display: block;
+}
+     </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <ul style="font-size: 30px;">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="disease.html">Diseases & Conditions</a></li>
+                <li><a href="product.html">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="contact-intro">
+            <h1>Contact Us</h1>
+            <p>Get in touch with us to learn more about our natural healthcare solutions or to book an appointment.</p>
+        </section>
+        <section class="contact-form">
+            <h2>Send Us a Message</h2>
+            <form action="/sendData" method="post" id="userForm">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name"><br><br>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email"><br><br>
+                <label for="phone">Phone:</label>
+                <input type="tel" id="phone" name="phone"><br><br>
+                <label for="message">Message:</label>
+                <textarea id="message" name="message"></textarea><br><br>
+                <input type="submit" value="Send">
+            </form>
+        </section>
+        <section class="contact-info">
+            <h2>Get in Touch</h2>
+            <p><strong>Address:</strong> kawanda, wattuba</p>
+            <p><strong>Phone:</strong> 0705601757</p>
+            <p><strong>Email:</strong> <a href="mailto:mikendizihiwe@gmail.com">mikendizihiwe@gmail.com</a></p>
+            <p><strong>Social Media:</strong>
+                <a href="https://www.facebook.com/rootandvine" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/rootandvine" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.twitter.com/rootandvine" target="_blank"><i class="fab fa-twitter"></i></a>
+            </p>
+        </section>
+    </main>
+    <script>
+        // Contact Us script.js code
+//         const form = document.querySelector('form');
+// const nameInput = document.querySelector('#name');
+// const emailInput = document.querySelector('#email');
+// const phoneInput = document.querySelector('#phone');
+// const messageInput = document.querySelector('#message');
+
+// form.addEventListener('submit', (e) => {
+//   e.preventDefault();
+
+//   const name = nameInput.value.trim();
+//   const email = emailInput.value.trim();
+//   const phone = phoneInput.value.trim();
+//   const message = messageInput.value.trim();
+
+//   if (!name || !email || !message) {
+//     alert('Please fill in all required fields.');
+//     return;
+//   }
+
+//   const formData = new FormData();
+//   formData.append('name', name);
+//   formData.append('email', email);
+//   formData.append('phone', phone);
+//   formData.append('message', message);
+
+//   fetch('contact.php', {
+//     method: 'POST',
+//     body: formData,
+//   })
+//     .then((response) => {
+//       if (response.ok) {
+//         alert('Email sent successfully!');
+//         form.reset();
+//       } else {
+//         throw new Error('Failed to send email.');
+//       }
+//     })
+//     .catch((error) => {
+//       console.log(error);
+//       alert('Failed to send email. Please try again later.');
+//     });
+// });
+    </script>
+</body>
+</html>
